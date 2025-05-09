@@ -1,0 +1,18 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Task</button>
+    </form>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {% if task.completed %}<s>{{ task.title }}</s>{% else %}{{ task.title }}{% endif %}
+            </li>
+        {% empty %}
+            <li>No tasks</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
